@@ -1,0 +1,40 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Product	productFactory.h	/^  Product()$/;"	f	struct:Product
+Product	productFactory.h	/^  Product(string name, string code, int p, int q)$/;"	f	struct:Product
+Product	productFactory.h	/^struct Product$/;"	s
+ProductFactory	ProductFactory.cpp	/^ProductFactory::ProductFactory()$/;"	f	class:ProductFactory
+ProductFactory	productFactory.h	/^class ProductFactory$/;"	c
+VendingMachine	VendingMachine.cpp	/^VendingMachine::VendingMachine()$/;"	f	class:VendingMachine
+VendingMachine	vendingMachine.h	/^class VendingMachine$/;"	c
+Wallet	Wallet.cpp	/^Wallet::Wallet()$/;"	f	class:Wallet
+Wallet	wallet.h	/^class Wallet$/;"	c
+abortTransaction	VendingMachine.cpp	/^void VendingMachine::abortTransaction()$/;"	f	class:VendingMachine
+credit	Wallet.cpp	/^int Wallet::credit(const int &money)$/;"	f	class:Wallet
+debit	Wallet.cpp	/^int Wallet::debit(const int &money)$/;"	f	class:Wallet
+getAvailableProduct	ProductFactory.cpp	/^string ProductFactory::getAvailableProduct(const string &code)$/;"	f	class:ProductFactory
+getBalance	Wallet.cpp	/^int Wallet::getBalance()$/;"	f	class:Wallet
+getProductPrice	ProductFactory.cpp	/^int ProductFactory::getProductPrice(const string &name)$/;"	f	class:ProductFactory
+init	ProductFactory.cpp	/^int ProductFactory::init()$/;"	f	class:ProductFactory
+init	VendingMachine.cpp	/^int VendingMachine::init()$/;"	f	class:VendingMachine
+m_Balance	wallet.h	/^    int m_Balance;$/;"	m	class:Wallet
+m_products	vendingMachine.h	/^    ProductFactory m_products;$/;"	m	class:VendingMachine
+m_productsList	productFactory.h	/^    vector<Product> m_productsList;$/;"	m	class:ProductFactory
+m_wallet	vendingMachine.h	/^    Wallet m_wallet;$/;"	m	class:VendingMachine
+main	main.cpp	/^int main()$/;"	f
+price	productFactory.h	/^  int price;$/;"	m	struct:Product
+process	VendingMachine.cpp	/^int VendingMachine::process(const string command)$/;"	f	class:VendingMachine
+processTransaction	VendingMachine.cpp	/^int VendingMachine::processTransaction(string productCode)$/;"	f	class:VendingMachine
+productCode	productFactory.h	/^  string productCode;$/;"	m	struct:Product
+productName	productFactory.h	/^  string productName;$/;"	m	struct:Product
+quantity	productFactory.h	/^  int quantity;$/;"	m	struct:Product
+showcase	ProductFactory.cpp	/^void ProductFactory::showcase()$/;"	f	class:ProductFactory
+split	VendingMachine.cpp	/^void split(string command, vector<string> &args, char delimeter)$/;"	f
+updateProductQuantity	ProductFactory.cpp	/^void ProductFactory::updateProductQuantity(const string name)$/;"	f	class:ProductFactory
+~ProductFactory	ProductFactory.cpp	/^ProductFactory::~ProductFactory()$/;"	f	class:ProductFactory
+~VendingMachine	VendingMachine.cpp	/^VendingMachine::~VendingMachine()$/;"	f	class:VendingMachine
+~Wallet	Wallet.cpp	/^Wallet::~Wallet()$/;"	f	class:Wallet
