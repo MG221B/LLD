@@ -1,0 +1,131 @@
+Problem Statement:
+------------------
+Design a backend service that manages YouTube playlists. Every playlist is owned by a user and contains an ordered list of videos. The system should support the following operations:
+
+1. Playlist Operations:
+   - Create Playlist: A user can create a new playlist by providing their userId and a playlistName. The system returns a unique playlistId.
+   - Delete Playlist: A user can delete a playlist using its playlistId.
+
+2. Video Operations within a Playlist:
+   - Add Video: Users can add a video to a playlist. A video is represented by a unique videoId, a title, a URL, and a duration.
+   - Remove Video: Users can remove a video from a playlist by providing the playlistId and the videoId.
+   - Reorder Videos: Users can rearrange the videos within a playlist by supplying a new order (i.e., a list of videoIds representing the desired order).
+
+3. Viewing a Playlist:
+   - Get Playlist Details: Retrieve the playlist details by playlistId, which should show the playlist name, the owner, and the videos in their current order.
+
+Assumptions:
+------------
+- All operations are assumed to be applied sequentially for the purpose of these examples.
+- The system does not need to handle concurrent updates for this exercise.
+
+User-Defined Inputs and Expected Outputs:
+-------------------------------------------
+
+Scenario 1: Create and View a Playlist
+----------------------------------------
+User Input Sequence:
+
+1. Create a Playlist:
+   Input:
+     createPlaylist(userId: 1001, playlistName: "My Favorite Videos")
+   Expected Output:
+     Playlist created successfully.
+     Playlist ID: PL1001_01
+
+2. Add Videos to the Playlist:
+   Input:
+     addVideo(playlistId: "PL1001_01", video: { videoId: "YT001", title: "Funny Cats", url: "http://youtube.com/watch?v=YT001", duration: "2:30" })
+     addVideo(playlistId: "PL1001_01", video: { videoId: "YT002", title: "Epic Fails", url: "http://youtube.com/watch?v=YT002", duration: "3:15" })
+   Expected Output:
+     Video YT001 added to Playlist PL1001_01.
+     Video YT002 added to Playlist PL1001_01.
+
+3. Get Playlist Details:
+   Input:
+     getPlaylistDetails(playlistId: "PL1001_01")
+   Expected Output:
+     Playlist ID: PL1001_01
+     Playlist Name: My Favorite Videos
+     Owner: User 1001
+     Videos in Order:
+       1. Video ID: YT001, Title: "Funny Cats", URL: "http://youtube.com/watch?v=YT001", Duration: 2:30
+       2. Video ID: YT002, Title: "Epic Fails", URL: "http://youtube.com/watch?v=YT002", Duration: 3:15
+
+Scenario 2: Remove a Video from a Playlist
+--------------------------------------------
+User Input Sequence:
+
+1. Remove a Video:
+   Input:
+     removeVideo(playlistId: "PL1001_01", videoId: "YT001")
+   Expected Output:
+     Video YT001 removed from Playlist PL1001_01.
+
+2. Get Playlist Details:
+   Input:
+     getPlaylistDetails(playlistId: "PL1001_01")
+   Expected Output:
+     Playlist ID: PL1001_01
+     Playlist Name: My Favorite Videos
+     Owner: User 1001
+     Videos in Order:
+       1. Video ID: YT002, Title: "Epic Fails", URL: "http://youtube.com/watch?v=YT002", Duration: 3:15
+
+Scenario 3: Reorder Videos in a Playlist
+-----------------------------------------
+Initial Setup:
+Assume the playlist "PL1001_01" has three videos:
+  - Current Order:
+      1. Video ID: YT001 – "Funny Cats"
+      2. Video ID: YT002 – "Epic Fails"
+      3. Video ID: YT003 – "Travel Vlog"
+   (For this scenario, assume that the videos are already added in that order.)
+
+User Input Sequence:
+
+1. Reorder Videos:
+   The user wants the new order: "YT002" first, then "YT003", and "YT001" last.
+   Input:
+     reorderVideos(playlistId: "PL1001_01", newOrder: ["YT002", "YT003", "YT001"])
+   Expected Output:
+     Playlist PL1001_01 videos reordered successfully.
+
+2. Get Playlist Details:
+   Input:
+     getPlaylistDetails(playlistId: "PL1001_01")
+   Expected Output:
+     Playlist ID: PL1001_01
+     Playlist Name: My Favorite Videos
+     Owner: User 1001
+     Videos in Order:
+       1. Video ID: YT002, Title: "Epic Fails", URL: "http://youtube.com/watch?v=YT002", Duration: 3:15
+       2. Video ID: YT003, Title: "Travel Vlog", URL: "http://youtube.com/watch?v=YT003", Duration: 4:20
+       3. Video ID: YT001, Title: "Funny Cats", URL: "http://youtube.com/watch?v=YT001", Duration: 2:30
+
+Scenario 4: Delete a Playlist
+------------------------------
+User Input Sequence:
+
+1. Delete a Playlist:
+   Input:
+     deletePlaylist(playlistId: "PL1001_01")
+   Expected Output:
+     Playlist PL1001_01 deleted successfully.
+
+2. Attempt to View Deleted Playlist:
+   Input:
+     getPlaylistDetails(playlistId: "PL1001_01")
+   Expected Output:
+     Error: Playlist with ID PL1001_01 not found.
+
+Additional Considerations:
+--------------------------
+- Extensibility: How might you modify this design to support collaborative playlists or integrated search features for videos?
+- Concurrency: What strategies would you implement to handle simultaneous updates from multiple devices?
+- Persistence: What kind of storage (e.g., SQL, NoSQL, in-memory data store) would you use to persist playlists while ensuring efficient ordering?
+- API Design: How would you design RESTful endpoints (or consider gRPC/GraphQL) to safely expose these operations?
+
+----------------------------------------------
+End of Question
+
