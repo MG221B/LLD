@@ -24,6 +24,7 @@ int MyPlayer::decode(const string &path)
 
     while(getline(file, line))
     {
+      //cout<<line<<endl;
       stringstream command(line);
       string word = "";
       vector<string> args;
@@ -56,9 +57,14 @@ int MyPlayer::decode(const string &path)
       }
       else if(args[0] == "ADD_TOPUP")
       {
+        if(m_streamerModeMap.size() <= 0)
+        {
+          cout<<"ADD_TOPUP_FAILED SUBSCRIPTIONS_NOT_FOUND"<<endl;
+          continue;
+        }
         if(m_topupCost < 0)
         {
-          cout<<"ADD_TOPUP_FAILEDDUPLICATE_TOPUP"<<endl;
+          cout<<"ADD_TOPUP_FAILED DUPLICATE_TOPUP"<<endl;
           return -1;
         }
         m_topupCost = m_topupCostMap[args[1]] * stoi(args[2]);
@@ -66,6 +72,12 @@ int MyPlayer::decode(const string &path)
       else if(args[0] == "PRINT_RENEWAL_DETAILS")
       {
         int totCost = 0;
+        if(m_streamerModeMap.size() <= 0)
+        {
+          cout<<"SUBSCRIPTIONS_NOT_FOUND"<<endl;
+          continue;
+        }
+
         for(auto &streams : m_streamerModeMap)
         {
           cout<<"RENEWAL_REMINDER "<<streams.second->getMode()<< " "<<streams.second->getRemindDate()<<endl;
@@ -80,6 +92,7 @@ int MyPlayer::decode(const string &path)
   }
   catch(...)
   {
+    cout<<"Unhandled Exception"<<endl;
   }
 }
 
