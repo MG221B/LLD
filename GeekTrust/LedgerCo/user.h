@@ -1,4 +1,7 @@
 #include <cmath>
+#include <string>
+#include <vector>
+#include <map>
 using namespace std;
 
 struct Loan
@@ -11,7 +14,7 @@ struct Loan
   {
     bank = bankName;
     emiAmt = emi;
-    loanAmout = amount;
+    loanAmount = amount;
     paidAmt = 0;
   }
 };
@@ -28,4 +31,4 @@ class User
     int addLoan(const string &bankName, const double &p, const double &r, const int &t);
     int getDues(const string bank, const int months, int &remAmt, int &remTime);
     int updateDues(const string bank, const int Amt,const int time);
-}
+};
