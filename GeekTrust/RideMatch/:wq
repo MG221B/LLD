@@ -1,0 +1,22 @@
+#ifndef PERSON_H
+#define PERSON_H
+
+#include <string>
+using namespace std;
+
+enum class Role
+{
+  DRIVER,
+  RIDER
+};
+
+class Person
+{
+  private:
+  public:
+    static Person* createRole(const string &role);
+    int Person::init(const string &id, const int &x, const int &y);
+    pair<int,int> getCords();
+    string getId();
+};
+#endif
