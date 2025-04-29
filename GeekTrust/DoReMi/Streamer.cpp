@@ -51,32 +51,38 @@ string Streamer::calculateEndDate(const string &startDate, const int &months)
     params.push_back(stoi(param));
   }
 
-  if(params[0] - 10 <= 0)
+  int remindDay = params[0] - 10;
+  if(remindDay <= 0)
   {
-    if((params[1] - 1) == 4 || (params[1] - 1) == 6 || (params[1] - 1) == 11 || (params[1] - 1) == 9)
+    int remindMonth = params[1] - 1;
+    string month = (remindMonth<10?("0"+to_string(remindMonth)):to_string(remindMonth));
+
+    if(remindMonth == 4 || remindMonth == 6 || remindMonth == 11 || remindMonth == 9)
     {
-      m_remindDate = to_string(30+ params[0] - 10)+ "-" + to_string(params[1] - 1)+ "-" + to_string(params[2]);
+      m_remindDate = to_string(30+ remindDay)+ "-" + month + "-" + to_string(params[2]);
     }
-    else if(params[1] - 1 == 2)
+    else if(remindMonth == 2)
     {
       if((params[2]%100)%4 == 0)
-        m_remindDate = to_string(29+ params[0] - 10) + "-" + to_string(params[1] - 1) + "-" + to_string(params[2]);
+        m_remindDate = to_string(29+ remindDay) + "-" + month + "-" + to_string(params[2]);
       else
-        m_remindDate = to_string(28 + params[0] - 10) + "-" + to_string(params[1] - 1) + "-" + to_string(params[2]);
+        m_remindDate = to_string(28 + remindDay) + "-" + month + "-" + to_string(params[2]);
     }
     else
     {
-      if(params[1] - 1 == 0)
+      if(remindMonth == 0)
       {
-        m_remindDate = to_string(31 + params[0] -10) + "-12-"+to_string(params[2]-1);
+        m_remindDate = to_string(31 + remindDay) + "-12-"+to_string(params[2]-1);
       }
       else
-        m_remindDate = to_string(31 + params[0] - 10) + "-" + to_string(params[1]- 1) + "-" + to_string(params[2]);
+        m_remindDate = to_string(31 + remindDay) + "-" + month + "-" + to_string(params[2]);
     }
   }
   else
   {
-    m_remindDate = to_string(params[0] - 10) +"-"+ to_string(params[1]) +"-"+ to_string(params[2]);
+    string day = (remindDay < 10 ? ("0"+to_string(remindDay)):to_string(remindDay));
+    string month = (params[1] < 10 ? ("0"+to_string(params[1])):to_string(params[1]));
+    m_remindDate = day + "-" + month +"-"+ to_string(params[2]);
   }
 }
 
